@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbarrada <fbarrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 14:39:49 by fbarrada          #+#    #+#             */
-/*   Updated: 2026/05/27 18:51:32 by fbarrada         ###   ########.fr       */
+/*   Updated: 2026/05/27 18:58:16 by fbarrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,17 @@ char	*clean_stash(char *stash)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash[1024];
 	char		*line;
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
+	if (BUFFER_SIZE <= 0 || fd < 0 || fd > 1024)
 		return (NULL);
-	stash = read_file(fd, stash);
-	if (!stash || !*stash)
-		return (free(stash), NULL);
-	line = extract_line(stash);
-	stash = clean_stash(stash);
-	if (!stash || !*stash)
-		stash = NULL;
+	stash[fd] = read_file(fd, stash[fd]);
+	if (!stash || !*stash[fd])
+		return (free(stash[fd]), NULL);
+	line = extract_line(stash[fd]);
+	stash[fd] = clean_stash(stash[fd]);
+	if (!stash[fd] || !*stash[fd])
+		stash[fd] = NULL;
 	return (line);
 }
