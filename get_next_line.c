@@ -6,13 +6,13 @@
 /*   By: fbarrada <fbarrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 14:39:49 by fbarrada          #+#    #+#             */
-/*   Updated: 2026/05/22 20:13:10 by fbarrada         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:09:18 by fbarrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	check_line_break(char	*stash)
+int	check_line_break(char *stash)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ int	check_line_break(char	*stash)
 
 char	*extract_line(char *stash)
 {
-	int	i;
+	int		i;
 	char	*newstr;
 
 	i = 0;
@@ -48,8 +48,8 @@ char	*extract_line(char *stash)
 
 char	*clean_stash(char *stash)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*newstr;
 
 	i = 0;
@@ -57,7 +57,7 @@ char	*clean_stash(char *stash)
 	while (stash[i] && stash[i] != '\n')
 		i++;
 	if (!stash[i] || stash[i + 1] == '\0')
-		return(free(stash), NULL);
+		return (free(stash), NULL);
 	i++;
 	while (stash[i] && stash[j + i])
 		j++;
@@ -71,10 +71,10 @@ char	*clean_stash(char *stash)
 
 char	*get_next_line(int fd)
 {
-	ssize_t	bytes_read;
+	ssize_t		bytes_read;
 	static char	*stash;
-	char	*line;
-	char	*buf;
+	char		*line;
+	char		*buf;
 
 	buf = malloc(BUFFER_SIZE + 1);
 	if (!(buf))
@@ -82,14 +82,14 @@ char	*get_next_line(int fd)
 	while (check_line_break(stash) == 0)
 	{
 		bytes_read = read(fd, buf, BUFFER_SIZE);
-		if (bytes_read == 0) 
+		if (bytes_read == 0)
 			break ;
 		if (bytes_read < 0)
 			return (free(buf), free(stash), stash = NULL, NULL);
 		buf[bytes_read] = '\0';
 		stash = ft_strjoin(stash, buf);
 	}
-	free (buf);
+	free(buf);
 	if (!stash || !*stash)
 		return (free(stash), NULL);
 	line = extract_line(stash);

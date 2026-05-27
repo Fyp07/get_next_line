@@ -6,19 +6,19 @@
 /*   By: fbarrada <fbarrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 14:40:26 by fbarrada          #+#    #+#             */
-/*   Updated: 2026/05/22 20:03:56 by fbarrada         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:09:26 by fbarrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char	*stash)
+size_t	ft_strlen(const char *stash)
 {
 	size_t	i;
 
 	i = 0;
 	if (!stash)
-		return(0);
+		return (0);
 	while (stash[i])
 		i++;
 	return (i);
@@ -32,12 +32,12 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 	while (i < n && src[i] != '\0')
 	{
 		dest[i] = src[i];
-		i ++;
+		i++;
 	}
 	while (i < n)
 	{
 		dest[i] = '\0';
-		i ++;
+		i++;
 	}
 	return (dest);
 }
