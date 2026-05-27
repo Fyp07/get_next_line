@@ -6,7 +6,7 @@
 /*   By: fbarrada <fbarrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 14:41:11 by fbarrada          #+#    #+#             */
-/*   Updated: 2026/05/27 14:32:01 by fbarrada         ###   ########.fr       */
+/*   Updated: 2026/05/27 15:02:59 by fbarrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 42
 
 # endif
 

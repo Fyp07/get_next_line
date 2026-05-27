@@ -6,7 +6,7 @@
 /*   By: fbarrada <fbarrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 14:40:26 by fbarrada          #+#    #+#             */
-/*   Updated: 2026/05/27 14:42:47 by fbarrada         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:50:07 by fbarrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*read_file(int fd, char *stash)
 
 	buf = malloc(BUFFER_SIZE + 1);
 	if (!(buf))
-		return (free(stash), NULL);
+		return (NULL);
 	while (check_line_break(stash) == 0)
 	{
 		bytes_read = read(fd, buf, BUFFER_SIZE);
