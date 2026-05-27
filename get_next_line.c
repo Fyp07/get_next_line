@@ -6,7 +6,7 @@
 /*   By: fbarrada <fbarrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 14:39:49 by fbarrada          #+#    #+#             */
-/*   Updated: 2026/05/27 14:09:18 by fbarrada         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:47:26 by fbarrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,25 +71,10 @@ char	*clean_stash(char *stash)
 
 char	*get_next_line(int fd)
 {
-	ssize_t		bytes_read;
 	static char	*stash;
 	char		*line;
-	char		*buf;
 
-	buf = malloc(BUFFER_SIZE + 1);
-	if (!(buf))
-		return (NULL);
-	while (check_line_break(stash) == 0)
-	{
-		bytes_read = read(fd, buf, BUFFER_SIZE);
-		if (bytes_read == 0)
-			break ;
-		if (bytes_read < 0)
-			return (free(buf), free(stash), stash = NULL, NULL);
-		buf[bytes_read] = '\0';
-		stash = ft_strjoin(stash, buf);
-	}
-	free(buf);
+	stash = read_file(fd, stash);
 	if (!stash || !*stash)
 		return (free(stash), NULL);
 	line = extract_line(stash);

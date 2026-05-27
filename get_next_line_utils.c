@@ -6,7 +6,7 @@
 /*   By: fbarrada <fbarrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 14:40:26 by fbarrada          #+#    #+#             */
-/*   Updated: 2026/05/27 14:09:26 by fbarrada         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:42:47 by fbarrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,6 @@ char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	i;
 	size_t	j;
-	size_t	size_s1;
-	size_t	size_s2;
-	size_t	totalsize;
 	char	*newstr;
 
 	if (!s1)
@@ -60,10 +57,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	i = 0;
 	j = 0;
-	size_s1 = ft_strlen(s1);
-	size_s2 = ft_strlen(s2);
-	totalsize = size_s1 + size_s2;
-	newstr = malloc(totalsize + 1);
+	newstr = malloc((ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (!newstr)
 		return (free(s1), NULL);
 	while (s1 && s1[i])
@@ -73,6 +67,28 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	while (s2[j])
 		newstr[i++] = s2[j++];
-	newstr[totalsize] = '\0';
+	newstr[(ft_strlen(s1) + ft_strlen(s2))] = '\0';
 	return (free(s1), newstr);
+}
+
+char	*read_file(int fd, char *stash)
+{
+	ssize_t	bytes_read;
+	char	*buf;
+
+	buf = malloc(BUFFER_SIZE + 1);
+	if (!(buf))
+		return (free(stash), NULL);
+	while (check_line_break(stash) == 0)
+	{
+		bytes_read = read(fd, buf, BUFFER_SIZE);
+		if (bytes_read == 0)
+			break ;
+		if (bytes_read < 0)
+			return (free(buf), free(stash), stash = NULL, NULL);
+		buf[bytes_read] = '\0';
+		stash = ft_strjoin(stash, buf);
+	}
+	free(buf);
+	return (stash);
 }
