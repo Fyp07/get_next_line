@@ -6,7 +6,7 @@
 /*   By: fbarrada <fbarrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 14:41:11 by fbarrada          #+#    #+#             */
-/*   Updated: 2026/05/27 18:47:45 by fbarrada         ###   ########.fr       */
+/*   Updated: 2026/05/29 19:20:27 by fbarrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 # endif
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
